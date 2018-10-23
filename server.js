@@ -20,7 +20,7 @@ var server = http.createServer(function (request, response) {
 
     /******** 从这里开始看，上面不要看 ************/
 
-    console.log('方方说：含查询字符串的路径\n' + pathWithQuery)
+    console.log('含查询字符串的路径\n' + pathWithQuery)
 
     if (path === '/uptoken') {
         response.statusCode = 200
@@ -34,7 +34,7 @@ var server = http.createServer(function (request, response) {
         let { accessKey, secretKey } = config;
         var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
         var options = {
-            scope: 'NeteaseMusic-Demo',
+            scope: 'neteasemusic-demo',
         };
         var putPolicy = new qiniu.rs.PutPolicy(options);
         var uploadToken = putPolicy.uploadToken(mac);

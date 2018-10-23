@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+body {
+  font-size: 12px;
+  line-height: 1.5;
+}
+a {
+  color: inherit;
+}
+input {
+  font: inherit;
+}
+.page {
+  display: flex;
+  height: 100vh;
+}
+.page aside {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.page main {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #d4d4d4;
+}
+.newSong {
+  text-align: center;
+  padding: 10px;
+}
+.newSong.active {
+  background: #d4d4d4;
+}
+#songList-container {
+  flex-grow: 1;
+}
+.songList {
+  text-align: left;
+  border-top: 1px solid #333;
+}
+.songList li {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+.songList li.active {
+  background: #d4d4d4;
+}
+.uploadArea {
+  text-align: center;
+  border: 2px dashed #ddd;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.uploadArea .pickfiles {
+  padding: 30px 20px;
+  cursor: pointer;
+}
+main .form {
+  font-size: 14px;
+}
+main .form .row {
+  margin: 15px 0;
+  display: flex;
+}
+main .form .row label {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 4em;
+  margin-right: 5px;
+}
+main .form .row.actions {
+  margin-left: calc(4em + 5px);
+}
+main .form .row input[type=text] {
+  padding: 3px 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  height: 30px;
+}
+main .form .row input[type=button],
+main .form .row input[type=submit],
+main .form .row button {
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 3px;
+}
