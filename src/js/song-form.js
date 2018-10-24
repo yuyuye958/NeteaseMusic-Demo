@@ -43,7 +43,7 @@
     data: {
       name: '', singer: '', url: '', id: ''
     },
-    create(data) {
+    create(data) { //存到leanCloud数据库里
       var Song = AV.Object.extend('Song');
       var song = new Song();
       song.set('name', data.name);
@@ -79,14 +79,14 @@
         e.preventDefault()
         let needs = 'name singer url'.split(' ')  //数组
         let data = {}
-        needs.map((string) => {
+        needs.map((string) => {  //获取input的值放进data里
           data[string] = this.view.$el.find(`[name="${string}"]`).val()
         })
         this.model.create(data).then(() => {
           this.view.render({}) //清空表单
-          let string = JSON.stringify(this.model.data) // 深拷贝
+          let string = JSON.stringify(this.model.data) //深拷贝
           let object = JSON.parse(string)
-          window.eventHub.emit('create', object) // 这里如果直接传this.model.data相当于传的是地址，会出bug！
+          window.eventHub.emit('create', object) //这里如果直接传this.model.data相当于传的是地址，会出bug！
         })
       })
     }

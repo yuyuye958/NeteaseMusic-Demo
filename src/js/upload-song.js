@@ -35,7 +35,7 @@
                 // container: 'container',             // 上传区域DOM ID，默认是browser_button的父元素
                 max_file_size: '20mb',             // 最大文件体积限制
                 dragdrop: true,                     // 开启可拖曳上传
-                drop_element: this.view.find('#uploadArea'),      // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                drop_element: this.view.find('#dragUploadArea'),      // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
                 auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
                 init: {
                     'FilesAdded': function (up, files) {
