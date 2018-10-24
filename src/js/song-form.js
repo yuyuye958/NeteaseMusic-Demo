@@ -5,7 +5,6 @@
       this.$el = $(this.el)
     },
     template: `
-        <h1>新建歌曲</h1>
         <form class="form">
           <div class="row">
             <label>
@@ -37,8 +36,14 @@
         html = html.replace(`__${string}__`, data[string] || '')
       })
       $(this.el).html(html)
+      if (!data.id) {
+        $(this.el).prepend('<h1>新建歌曲</h1>')
+      } else {
+        $(this.el).prepend('<h1>编辑歌曲</h1>')
+      }
     },
   }
+
   let model = {
     data: {
       name: '', singer: '', url: '', id: ''
@@ -58,10 +63,21 @@
         // this.data.singer = attributes.singer
         // this.data.url = attributes.url
       }, (error) => {
-          console.log(error)
+        console.log(error)
       });
+    },
+    updata(data){
+      var song = AV.Object.createWithoutData('Song', this.data.id)
+      song.set('name', data.name)
+      song.set('singer', data.singer)
+      song.set('url', data.url)
+      return song.save().then((response)=>{
+        Object.assign(this.data, data)
+        return response
+      })
     }
   }
+
   let controller = {
     init(view, model) {
       this.view = view
@@ -69,28 +85,49 @@
       this.model = model
       this.bindEvents()
       this.view.render(this.model.data)
-      window.eventHub.on('upload', (data) => {
-        this.model.data = data
-        this.view.render(this.model.data)
-      })
       window.eventHub.on('select', (data) => {
         this.model.data = data
         this.view.render(this.model.data)
+      })
+      window.eventHub.on('new', (data) => { //点击新建
+        if (this.model.data.id) {  //如果有id说明是从数据库里拿的 清空表单
+          this.model.data = {}
+        } else { //如果没id说明用户正在新建 还没保存的 不清空表单
+          Object.assign(this.model.data, data)
+        }
+        this.view.render(this.model.data)
+      })
+    },
+    create(){
+      let needs = 'name singer url'.split(' ')  //数组
+      let data = {}
+      needs.map((string) => {  //获取input的值放进data里
+        data[string] = this.view.$el.find(`[name="${string}"]`).val()
+      })
+      this.model.create(data).then(() => {
+        this.view.render({}) //清空表单
+        //深拷贝！这里如果直接传this.model.data相当于传的是地址，会出bug！
+        window.eventHub.emit('create', JSON.parse(JSON.stringify(this.model.data)))
+      })
+    },
+    update(){
+      let needs = 'name singer url'.split(' ')  //数组
+      let data = {}
+      needs.map((string) => {  //获取input的值放进data里
+        data[string] = this.view.$el.find(`[name="${string}"]`).val()
+      })
+      this.model.updata(data).then(()=>{
+        window.eventHub.emit('update', JSON.parse(JSON.stringify(this.model.data))) //修改并保存后 页面上修改的歌曲也要重新渲染
       })
     },
     bindEvents() {
       this.view.$el.on('submit', 'form', (e) => {
         e.preventDefault()
-        let needs = 'name singer url'.split(' ')  //数组
-        let data = {}
-        needs.map((string) => {  //获取input的值放进data里
-          data[string] = this.view.$el.find(`[name="${string}"]`).val()
-        })
-        this.model.create(data).then(() => {
-          this.view.render({}) //清空表单
-          //深拷贝！这里如果直接传this.model.data相当于传的是地址，会出bug！
-          window.eventHub.emit('create', JSON.parse(JSON.stringify(this.model.data)))
-        })
+        if(this.model.data.id){
+          this.update()
+        }else{
+          this.create()
+        }
       })
     }
   }

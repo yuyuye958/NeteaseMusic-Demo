@@ -71,11 +71,20 @@
             })
         },
         bindEventHub() {
-            window.eventHub.on('upload', () => {
-                this.view.clearActive()
-            })
             window.eventHub.on('create', (songData) => {
                 this.model.data.songs.push(songData)
+                this.view.render(this.model.data)
+            })
+            window.eventHub.on('new', () => {
+                this.view.clearActive()
+            })
+            window.eventHub.on('update', (song) => { //遍历data的songs 如果id相同那么就是这个song要重新渲染
+                let songs = this.model.data.songs
+                for(let i=0; i<songs.length; i++){
+                    if(songs[i].id === song.id){
+                        Object.assign(songs[i], song)
+                    }
+                }
                 this.view.render(this.model.data)
             })
         }
