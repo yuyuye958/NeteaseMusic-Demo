@@ -73,6 +73,10 @@
         this.model.data = data
         this.view.render(this.model.data)
       })
+      window.eventHub.on('select', (data) => {
+        this.model.data = data
+        this.view.render(this.model.data)
+      })
     },
     bindEvents() {
       this.view.$el.on('submit', 'form', (e) => {
@@ -84,9 +88,8 @@
         })
         this.model.create(data).then(() => {
           this.view.render({}) //清空表单
-          let string = JSON.stringify(this.model.data) //深拷贝
-          let object = JSON.parse(string)
-          window.eventHub.emit('create', object) //这里如果直接传this.model.data相当于传的是地址，会出bug！
+          //深拷贝！这里如果直接传this.model.data相当于传的是地址，会出bug！
+          window.eventHub.emit('create', JSON.parse(JSON.stringify(this.model.data)))
         })
       })
     }
