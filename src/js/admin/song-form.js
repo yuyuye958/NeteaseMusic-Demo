@@ -24,13 +24,19 @@
             </label>
             <input name="url" type="text" value="__url__">
           </div>
+          <div class="row">
+            <label>
+            封面
+            </label>
+            <input name="cover" type="text" value="__cover__">
+          </div>
           <div class="row actions">
             <button type="submit">保存</button>
           </div>
         </form>
       `,
     render(data = {}) {
-      let placeholders = ['name', 'singer', 'url', 'id']
+      let placeholders = ['name', 'singer', 'url', 'id', 'cover']
       let html = this.template
       placeholders.map((string) => {
         html = html.replace(`__${string}__`, data[string] || '')
@@ -46,7 +52,7 @@
 
   let model = {
     data: {
-      name: '', singer: '', url: '', id: ''
+      name: '', singer: '', url: '', id: '', cover: ''
     },
     create(data) { //存到leanCloud数据库里
       var Song = AV.Object.extend('Song');
@@ -54,6 +60,7 @@
       song.set('name', data.name);
       song.set('singer', data.singer);
       song.set('url', data.url);
+      song.set('cover', data.cover);
       return song.save().then((newSong) => {
         let { id, attributes } = newSong
         Object.assign(this.data, { id, ...attributes })
@@ -71,6 +78,7 @@
       song.set('name', data.name)
       song.set('singer', data.singer)
       song.set('url', data.url)
+      song.set('cover', data.cover)
       return song.save().then((response)=>{
         Object.assign(this.data, data)
         return response
@@ -99,7 +107,7 @@
       })
     },
     create(){
-      let needs = 'name singer url'.split(' ')  //数组
+      let needs = 'name singer url cover'.split(' ')  //数组
       let data = {}
       needs.map((string) => {  //获取input的值放进data里
         data[string] = this.view.$el.find(`[name="${string}"]`).val()
@@ -111,7 +119,7 @@
       })
     },
     update(){
-      let needs = 'name singer url'.split(' ')  //数组
+      let needs = 'name singer url cover'.split(' ')  //数组
       let data = {}
       needs.map((string) => {  //获取input的值放进data里
         data[string] = this.view.$el.find(`[name="${string}"]`).val()
