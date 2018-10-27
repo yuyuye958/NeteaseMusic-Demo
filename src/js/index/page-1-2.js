@@ -3,18 +3,20 @@
         el: '.newSongs',
         template: `
             <li>
-                <h3>{{song.name}}</h3>
-                <p>
-                    <svg class="icon icon-sq" aria-hidden="true">
-                        <use xlink:href="#icon-sq"></use>
-                    </svg>
-                    {{song.singer}}
-                </p>
-                <a class="playButton" href="./song.html?id={{song.id}}">
-                    <svg class="icon icon-play" aria-hidden="true">
-                        <use xlink:href="#icon-play"></use>
-                    </svg>
-                </a>
+                <a href="./song.html?id={{song.id}}">
+                    <h3>{{song.name}}</h3>
+                    <p>
+                        <svg class="icon icon-sq" aria-hidden="true">
+                            <use xlink:href="#icon-sq"></use>
+                        </svg>
+                        {{song.singer}}
+                    </p>
+                    <div class="playButton">
+                        <svg class="icon icon-play" aria-hidden="true">
+                            <use xlink:href="#icon-play"></use>
+                        </svg>
+                    </div>
+                </a>     
             </li>
         `,
         init() {

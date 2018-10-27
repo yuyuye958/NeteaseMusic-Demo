@@ -21,8 +21,32 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: transparent url(http://p3.music.126.net/z4p2xss2a50qNHe6TLFdoA==/2425522650910827.jpg) no-repeat center;
-  background-size: cover;
+  position: relative;
+}
+.song-bg {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transform-origin: center top;
+  transform-origin: center top;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: -1;
+  filter: blur(20px);
+}
+.song-bg::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .disc-container {
   position: relative;
@@ -44,25 +68,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
-  height: 20vw;
-  width: 20vw;
+  height: 15vw;
+  width: 15vw;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
 }
 .disc-container .disc .icon-wrapper .icon {
-  width: 10vw;
+  width: 15vw;
   fill: white;
 }
 .disc-container .disc .ring {
-  width: 72vw;
+  width: 80vw;
 }
 .disc-container .disc .light {
-  width: 72vw;
+  width: 80vw;
   position: absolute;
 }
 .disc-container .disc .cover {
-  width: 44.5vw;
+  width: 49.5vw;
   position: absolute;
   border-radius: 50%;
   animation: circle 20s infinite linear;
@@ -89,7 +112,7 @@
   margin-top: 20px;
 }
 .song-description h1 {
-  color: white;
+  color: #fefefe;
   font-size: 18px;
 }
 .song-description p {
@@ -97,7 +120,7 @@
   line-height: 24px;
 }
 .song-description p.active {
-  color: white;
+  color: #fefefe;
 }
 .song-description .lines {
   transition: transform 0.3s;
