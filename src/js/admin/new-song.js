@@ -17,6 +17,8 @@
             this.active()
             $(this.view.el).on('click', ()=>{
                 window.eventHub.emit('new')
+                $('#uploadArea').show()
+                $('#editArea').hide()
             })
             window.eventHub.on('new', (data)=>{
                 $(this.view.el).addClass('active')

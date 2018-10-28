@@ -1,6 +1,6 @@
 {
     let view = {
-        el: '.uploadArea',
+        el: '#uploadArea',
         find(selector){
             return $(this.el).find(selector)[0]
         }
@@ -58,6 +58,8 @@
                         //    "key": "gogopher.jpg"
                         //  }
                         // 查看简单反馈
+                        $('#uploadArea').hide()
+                        $('#editArea').show()
                         window.eventHub.emit('afterUpload')
                         var domain = up.getOption('domain');
                         var res = JSON.parse(info.response);

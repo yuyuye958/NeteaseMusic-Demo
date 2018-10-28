@@ -1,6 +1,6 @@
 {
     let view = {
-        el: '#songList-container',
+        el: '.songList-container',
         template: `
         <ul class="songList">
         </ul>
@@ -11,7 +11,15 @@
 
             let { songs, selectedSongId } = data
             let liList = songs.map((song) =>{
-                let $li = $('<li></li>').text(song.name).attr('data-song-id', song.id)
+                let $icon = $(`
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-music"></use>
+                    </svg>
+                `)
+                let $name = $('<p class="songName"></p>').text(song.name)
+                let $singer = $('<p class="songSinger"></p>').text(song.singer)
+                let $song = $('<div class="song"></div>').append($name).append($singer)
+                let $li = $('<li></li>').append($icon).append($song).attr('data-song-id', song.id)
                 if (song.id === selectedSongId){
                     $li.addClass('active')
                 }
@@ -57,6 +65,9 @@
         },
         bindEvents() {
             $(this.view.el).on('click', 'li', (e) => {
+                $('#uploadArea').hide()
+                $('#editArea').show()
+                
                 let songId = e.currentTarget.getAttribute('data-song-id')
 
                 this.model.data.selectedSongId = songId  //保存哪个li被选中了

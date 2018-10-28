@@ -1,8 +1,8 @@
 window.eventHub = {
     events: {
-        //'羊城晚报': [fn],
-        //'楚天都市报': [],
-    }, // hash
+        //'eventName': [fn],
+        //'eventName': [],
+    },
     emit(eventName, data) { //发布
         for (let key in this.events) {
             if (key === eventName) {

@@ -100,7 +100,8 @@
             this.model.get(id).then(() => {
                 this.model.data.status = 'playing'
                 this.view.render(this.model.data)
-                this.view.play()
+                //this.view.play()
+                //Chrome 66版本后禁止在网页加载完前自动播放音频  所以还是在audio标签里加autoplay吧
             })
             this.bindEvents()
         },

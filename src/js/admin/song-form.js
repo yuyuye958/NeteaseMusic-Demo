@@ -1,6 +1,6 @@
 {
   let view = {
-    el: '.page > main',
+    el: '#editArea',
     init() {
       this.$el = $(this.el)
     },
