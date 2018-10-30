@@ -79,7 +79,10 @@
             })
         },
         bindEvents() {
-            var event = throttle((e)=>{
+            this.view.$el.on('input', '#search',(e)=>{
+                event(e)
+            })    
+            let event = this.throttle((e)=>{
                 let val = $(e.currentTarget).val()
                 if (val) {
                     $('.default').hide()
@@ -92,34 +95,27 @@
                     $('.results').hide()
                     this.view.$el.find('.results li').remove()
                 }
-            }, 800, 1500)
-
-            this.view.$el.on('input', '#search',(e)=>{
-                event(e)
-            })
-
-            function throttle (callback, delay, wait) { //函数节流
-                var count = null
-                var start = null
-                return function() {
-                    var now = +new Date()
-                    var context = this
-                    var args = arguments
-                    if ( !start ) {
-                        start = now
-                    }
-                    if ( now - start > wait ) {
-                        count && clearTimeout(count)
-                        start = now
-                        callback.apply(this, args)
-                    } else {
-                        count && clearTimeout(count)
-                        count = setTimeout(function(){
-                            callback.apply(this, args)
-                        }, delay)
-                    }
+            }, 800, 1500)      
+        },
+        throttle(fn, delay, mustRunDelay){ //节流函数
+            var timer = null;
+            var t_start;
+            return function(){
+                var context = this, args = arguments, t_curr = +new Date();
+                clearTimeout(timer);
+                if(!t_start){
+                    t_start = t_curr;
                 }
-            }
+                if(t_curr - t_start >= mustRunDelay){
+                    fn.apply(context, args);
+                    t_start = t_curr;
+                }
+                else {
+                    timer = setTimeout(function(){
+                        fn.apply(context, args);
+                    }, delay);
+                }
+            };
         }
     }
     controller.init(view, model)
