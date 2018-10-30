@@ -22,6 +22,9 @@
         init() {
             this.$el = $(this.el);
         },
+        removeLoading(){
+            this.$el.find('#songs-loading').remove()
+        },
         render(data) {
             let { songs } = data;
             songs.map((song) => {
@@ -55,6 +58,7 @@
             this.view.init();
             this.model = model;
             this.model.find().then(() => {
+                this.view.removeLoading()
                 this.view.render(this.model.data)
             });
         },

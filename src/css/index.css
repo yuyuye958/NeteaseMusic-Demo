@@ -285,3 +285,6 @@ body {
   margin-top: 0;
   display: none;
 }
+.songs-loading {
+  text-align: center;
+}

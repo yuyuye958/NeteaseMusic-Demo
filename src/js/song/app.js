@@ -84,7 +84,8 @@
         get(id) {
             var query = new AV.Query('Song');
             return query.get(id).then((song) => {
-                Object.assign(this.data.song, { id: song.id, ...song.attributes })
+                Object.assign(this.data.song, { id: song.id }, song.attributes)
+                //等同于 Object.assign(this.data.song, { id: song.id, ...song.attributes })
                 return song
             }, function (error) {
                 console.log(error)
@@ -100,8 +101,10 @@
             this.model.get(id).then(() => {
                 this.model.data.status = 'playing'
                 this.view.render(this.model.data)
-                //this.view.play()
-                //Chrome 66版本后禁止在网页加载完前自动播放音频  所以还是在audio标签里加autoplay吧
+                this.view.play()
+                if (this.view.$el.find('audio')[0].paused) { //移动端不自动播放 所以要判断一下不让碟片转动了
+                    this.view.$el.find('.disc-container').removeClass('playing')
+                }
             })
             this.bindEvents()
         },
