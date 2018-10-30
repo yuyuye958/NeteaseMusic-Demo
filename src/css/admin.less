@@ -42,8 +42,16 @@ button {
 	border-radius: 20px;
 	cursor: pointer;
 	font-size: 14px;
-	color: @red;
-	background: none;
+	color: white;
+	background: @red;
+	transition: all 0.2s;
+	&:focus{
+		outline: none;
+		box-shadow: 0 0 0 1px #cd0000;
+	}
+	&:hover{
+		background: #cd0000;
+	}
 }
 
 // page
@@ -101,14 +109,31 @@ button {
 			padding: 6px 10px;
 			display: flex;
 			align-items: center;
-			svg {
+			cursor: pointer;
+			.icon-music {
 				margin-right: 10px;
+			}
+			.song{
+				flex:1
+			}
+			.icon-delete{
+				display: none;
+				transition: all 0.1s;
 			}
 			&:nth-child(odd) {
 				background: #eeeeee;
 			}
 			&:nth-child(even) {
 				background: #f7f7f7;
+			}
+			&:hover{
+				background: @active;
+				.icon-delete{
+					display: inline-flex;
+					&:hover{
+						color:@red;
+					}
+				}
 			}
 			&.active {
 				background: @active;
@@ -177,6 +202,7 @@ button {
 				border: 1px solid #ddd;
 				border-radius: 5px;
 				width: 100%;
+				resize:none; 
 			}
 			input[type=text] {		
 				height: 35px;
@@ -247,5 +273,42 @@ button {
 	10% {
 		box-shadow: 0 -20px @red;
 		height: 80px;
+	}
+}
+
+//ifDelete
+.ifDelete{
+	visibility: hidden;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .5);
+	z-index: 2;
+	justify-content: center;
+	align-items: center;
+	&.active {
+		display: flex;
+		visibility: visible;
+	}
+	.ifDelete-inner{
+		padding: 25px;
+		border-radius: 8px;
+		border: 1px solid @red;
+		background-color: white;
+		text-align: center;
+		p{
+			font-size: 20px;
+		}
+		button{
+			padding: 8px;
+			width: 100px;
+			margin: 40px 20px 0;
+		}
+		.btnNoDelete{
+			background: white;
+			color: @red;
+		}
 	}
 }

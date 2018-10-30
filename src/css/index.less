@@ -170,9 +170,9 @@ body {
 	}
 }
 
-.newSongs > .list {
+.newSongs .list,.search-result .list {
 	margin-top: 18px;
-	> li {
+	li {
 		position: relative;
 		margin-left: 10px;
 		margin-right: 10px;
@@ -191,7 +191,6 @@ body {
 				color: @grey;
 			}
 		}
-		
 	}
 	.playButton {
 		position: absolute;
@@ -235,5 +234,66 @@ body {
 		font-size: 12px;
 		color: @grey;
 		transform: scale(.75);
+	}
+}
+
+/* search */
+.page-3{
+	padding: 3vw;
+	.search-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		input {
+			border: 1px solid transparent;
+			background-color: #ebecec;
+			line-height: 7vw;
+			width: 100%;
+			border-radius: 1em;
+			padding-left: 8vw;
+			height: 7vw;
+			outline: none;
+		}
+		.icon{
+			fill: #bcbdbd;
+			position: absolute;
+		}
+		.icon-search {
+			height: 3.5vw;
+			width: 3.5vw;	
+			left: 2.5vw;
+		}
+		.icon-deleteInput {
+			width: 4vw;
+			height: 4vw;
+			right: 3vw;
+		}
+	}
+}
+
+
+.search-result {
+	h2{
+		font-size: 12px;
+		padding: 8vw 0 2vw;
+	}
+	.default {	
+		.default-tags {
+			display: flex;
+			flex-wrap: wrap;
+			a {
+				border: 1px solid #d3d4da;
+				font-size: 3.7vw;
+				padding: 1vw 2vw;
+				line-height: 6vw;
+				border-radius: 5vw;
+				margin: 1vw 2.5vw
+			}
+		}
+	}
+	.results{
+		margin-top: 0;
+		display: none;
 	}
 }

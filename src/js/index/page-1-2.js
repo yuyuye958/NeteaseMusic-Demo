@@ -30,7 +30,7 @@
                     .replace('{{song.singer}}', song.singer)
                     .replace('{{song.id}}', song.id)
                 )
-                this.$el.find('.list').append($li)
+                this.$el.find('#songs').append($li)
             })
         }
     };

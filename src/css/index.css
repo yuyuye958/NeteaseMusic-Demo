@@ -158,42 +158,50 @@ body {
 .playlists > ol.songs li img {
   width: 100%;
 }
-.newSongs > .list {
+.newSongs .list,
+.search-result .list {
   margin-top: 18px;
 }
-.newSongs > .list > li {
+.newSongs .list li,
+.search-result .list li {
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
   border-bottom: 1px solid #e2e2e3;
 }
-.newSongs > .list > li a {
+.newSongs .list li a,
+.search-result .list li a {
   display: inline-block;
   height: 100%;
   width: 100%;
   padding-bottom: 6px;
   padding-top: 5px;
 }
-.newSongs > .list > li a > h3 {
+.newSongs .list li a > h3,
+.search-result .list li a > h3 {
   font-size: 17px;
 }
-.newSongs > .list > li a > p {
+.newSongs .list li a > p,
+.search-result .list li a > p {
   font-size: 12px;
   color: #888;
 }
-.newSongs > .list .playButton {
+.newSongs .list .playButton,
+.search-result .list .playButton {
   position: absolute;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
 }
-.newSongs > .list .icon-play {
+.newSongs .list .icon-play,
+.search-result .list .icon-play {
   width: 22px;
   height: 22px;
   vertical-align: middle;
   fill: #aaa;
 }
-.newSongs > .list .icon-sq {
+.newSongs .list .icon-sq,
+.search-result .list .icon-sq {
   fill: #D43C33;
 }
 .art {
@@ -222,4 +230,58 @@ body {
   font-size: 12px;
   color: #888;
   transform: scale(0.75);
+}
+/* search */
+.page-3 {
+  padding: 3vw;
+}
+.page-3 .search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.page-3 .search-wrapper input {
+  border: 1px solid transparent;
+  background-color: #ebecec;
+  line-height: 7vw;
+  width: 100%;
+  border-radius: 1em;
+  padding-left: 8vw;
+  height: 7vw;
+  outline: none;
+}
+.page-3 .search-wrapper .icon {
+  fill: #bcbdbd;
+  position: absolute;
+}
+.page-3 .search-wrapper .icon-search {
+  height: 3.5vw;
+  width: 3.5vw;
+  left: 2.5vw;
+}
+.page-3 .search-wrapper .icon-deleteInput {
+  width: 4vw;
+  height: 4vw;
+  right: 3vw;
+}
+.search-result h2 {
+  font-size: 12px;
+  padding: 8vw 0 2vw;
+}
+.search-result .default .default-tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+.search-result .default .default-tags a {
+  border: 1px solid #d3d4da;
+  font-size: 3.7vw;
+  padding: 1vw 2vw;
+  line-height: 6vw;
+  border-radius: 5vw;
+  margin: 1vw 2.5vw;
+}
+.search-result .results {
+  margin-top: 0;
+  display: none;
 }

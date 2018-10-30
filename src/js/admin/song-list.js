@@ -8,18 +8,23 @@
         render(data) {
             let $el = $(this.el)
             $el.html(this.template)
-
+            console.log(1)
             let { songs, selectedSongId } = data
             let liList = songs.map((song) =>{
-                let $icon = $(`
-                    <svg class="icon" aria-hidden="true">
+                let $icon1 = $(`
+                    <svg class="icon icon-music" aria-hidden="true">
                         <use xlink:href="#icon-music"></use>
+                    </svg>
+                `)
+                let $icon2 = $(`
+                    <svg class="icon icon-delete" aria-hidden="true">
+                        <use xlink:href="#icon-delete"></use>
                     </svg>
                 `)
                 let $name = $('<p class="songName"></p>').text(song.name)
                 let $singer = $('<p class="songSinger"></p>').text(song.singer)
                 let $song = $('<div class="song"></div>').append($name).append($singer)
-                let $li = $('<li></li>').append($icon).append($song).attr('data-song-id', song.id)
+                let $li = $('<li></li>').append($icon1).append($song).append($icon2).attr('data-song-id', song.id)
                 if (song.id === selectedSongId){
                     $li.addClass('active')
                 }
@@ -60,6 +65,7 @@
         },
         getAllSongs() {
             return this.model.find().then(() => { //从数据库获取数据并渲染页面
+                console.log(1)
                 this.view.render(this.model.data)
             })
         },
@@ -83,6 +89,30 @@
                 }
                 //深拷贝后再传数据
                 window.eventHub.emit('select', JSON.parse(JSON.stringify(data)))
+            })
+            $(this.view.el).on('click', '.icon-delete', (e) => {
+                let songLi = $(e.currentTarget).parent()
+                let songId = songLi.attr('data-song-id')
+                e.stopPropagation() //要阻止冒泡
+                let song = AV.Object.createWithoutData('Song', songId);
+                $('.ifDelete').addClass('active')
+
+                $('.btnDelete').on('click',(e)=>{
+                    song.destroy().then( (success) =>{
+                        songLi.remove()
+                        this.model.find()
+                        this.view.render(this.model.data)
+                        $('#uploadArea').show()
+                        $('#editArea').hide()
+                    }, function (error) {
+                        alert('删除失败!')
+                    });
+                    $('.ifDelete').removeClass('active')
+                })
+                $('.btnNoDelete').on('click',(e)=>{
+                    $('.ifDelete').removeClass('active')
+                })
+               
             })
         },
         bindEventHub() {

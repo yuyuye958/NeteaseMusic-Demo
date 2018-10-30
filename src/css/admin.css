@@ -39,8 +39,16 @@ button {
   border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
-  color: #d43c33;
-  background: none;
+  color: white;
+  background: #d43c33;
+  transition: all 0.2s;
+}
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #cd0000;
+}
+button:hover {
+  background: #cd0000;
 }
 .page {
   border-radius: 5px;
@@ -96,15 +104,32 @@ button {
   padding: 6px 10px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
-.songList-container .songList li svg {
+.songList-container .songList li .icon-music {
   margin-right: 10px;
+}
+.songList-container .songList li .song {
+  flex: 1;
+}
+.songList-container .songList li .icon-delete {
+  display: none;
+  transition: all 0.1s;
 }
 .songList-container .songList li:nth-child(odd) {
   background: #eeeeee;
 }
 .songList-container .songList li:nth-child(even) {
   background: #f7f7f7;
+}
+.songList-container .songList li:hover {
+  background: #C8C8C8;
+}
+.songList-container .songList li:hover .icon-delete {
+  display: inline-flex;
+}
+.songList-container .songList li:hover .icon-delete:hover {
+  color: #d43c33;
 }
 .songList-container .songList li.active {
   background: #C8C8C8;
@@ -171,6 +196,7 @@ button {
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
+  resize: none;
 }
 .editArea .form .row input[type=text] {
   height: 35px;
@@ -237,4 +263,39 @@ button {
     box-shadow: 0 -20px #d43c33;
     height: 80px;
   }
+}
+.ifDelete {
+  visibility: hidden;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+}
+.ifDelete.active {
+  display: flex;
+  visibility: visible;
+}
+.ifDelete .ifDelete-inner {
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #d43c33;
+  background-color: white;
+  text-align: center;
+}
+.ifDelete .ifDelete-inner p {
+  font-size: 20px;
+}
+.ifDelete .ifDelete-inner button {
+  padding: 8px;
+  width: 100px;
+  margin: 40px 20px 0;
+}
+.ifDelete .ifDelete-inner .btnNoDelete {
+  background: white;
+  color: #d43c33;
 }
