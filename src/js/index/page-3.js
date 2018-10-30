@@ -79,7 +79,7 @@
             })
         },
         bindEvents() {
-            this.view.$el.on('input', '#search', (e) => {
+            var event = throttle((e)=>{
                 let val = $(e.currentTarget).val()
                 if (val) {
                     $('.default').hide()
@@ -92,8 +92,34 @@
                     $('.results').hide()
                     this.view.$el.find('.results li').remove()
                 }
+            }, 800, 1500)
 
+            this.view.$el.on('input', '#search',(e)=>{
+                event(e)
             })
+
+            function throttle (callback, delay, wait) { //函数节流
+                var count = null
+                var start = null
+                return function() {
+                    var now = +new Date()
+                    var context = this
+                    var args = arguments
+                    if ( !start ) {
+                        start = now
+                    }
+                    if ( now - start > wait ) {
+                        count && clearTimeout(count)
+                        start = now
+                        callback.apply(this, args)
+                    } else {
+                        count && clearTimeout(count)
+                        count = setTimeout(function(){
+                            callback.apply(this, args)
+                        }, delay)
+                    }
+                }
+            }
         }
     }
     controller.init(view, model)
