@@ -2,8 +2,10 @@
 包括PC端的后台歌曲管理页面和移动端的搜索及播放音乐
 
 ## 在线预览
-[移动端 客户端](https://yuyuye958.github.io/NeteaseMusic-Demo/src/index.html)
-[PC端 后台管理](https://yuyuye958.github.io/NeteaseMusic-Demo/src/admin.html)
+[移动端-客户端](https://yuyuye958.github.io/NeteaseMusic-Demo/src/index.html)
+
+[PC端-后台管理](https://yuyuye958.github.io/NeteaseMusic-Demo/src/admin.html)
+
 注：上传歌曲功能需在本地启动server.js，并添加qiniu.json文件(存歌的数据库的key，未上传到github)
 
 ## 本地预览
