@@ -64,8 +64,7 @@ body {
   padding: 17px 10px;
 }
 .topbar .logo > svg {
-  width: 142px;
-  height: 25px;
+  height: 6.5vw;
   vertical-align: top;
 }
 .topbar a {
@@ -158,50 +157,43 @@ body {
 .playlists > ol.songs li img {
   width: 100%;
 }
-.newSongs .list,
-.search-result .list {
+/* latestMusic */
+.list {
   margin-top: 18px;
 }
-.newSongs .list li,
-.search-result .list li {
+.list li {
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
   border-bottom: 1px solid #e2e2e3;
 }
-.newSongs .list li a,
-.search-result .list li a {
+.list li a {
   display: inline-block;
   height: 100%;
   width: 100%;
   padding-bottom: 6px;
   padding-top: 5px;
 }
-.newSongs .list li a > h3,
-.search-result .list li a > h3 {
+.list li a > h3 {
   font-size: 17px;
 }
-.newSongs .list li a > p,
-.search-result .list li a > p {
+.list li a > p {
   font-size: 12px;
   color: #888;
 }
-.newSongs .list .playButton,
-.search-result .list .playButton {
+.list .playButton {
   position: absolute;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
 }
-.newSongs .list .icon-play,
-.search-result .list .icon-play {
+.list .icon-play {
   width: 22px;
   height: 22px;
   vertical-align: middle;
   fill: #aaa;
 }
-.newSongs .list .icon-sq,
-.search-result .list .icon-sq {
+.list .icon-sq {
   fill: #D43C33;
 }
 .art {
@@ -230,6 +222,51 @@ body {
   font-size: 12px;
   color: #888;
   transform: scale(0.75);
+}
+/* hotList */
+.hot-board {
+  background: url(//s3.music.126.net/m/s/img/hot_music_bg_2x.jpg?f01a252389c26bcf016816242eaa6aee) no-repeat;
+  position: relative;
+  height: 40vw;
+  padding-left: 5.8vw;
+  padding-top: 6.9vw;
+  overflow: hidden;
+  background-size: contain;
+}
+.hot-board .hot-music-logo {
+  background-image: url(//s3.music.126.net/m/s/img/index_icon_3x.png?49a82fee3e0fc602e9c8b25df2bda159);
+  width: 142px;
+  height: 67px;
+  background-position: -24px -30px;
+  background-size: 166px 97px;
+}
+.hot-board .hot-music-date {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  -webkit-transform: scale(0.91);
+  transform: scale(0.91);
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+}
+#hotList {
+  margin-top: 0;
+}
+#hotList li {
+  margin: 0;
+  padding-left: 9vw;
+}
+#hotList li .rank {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 2vw;
+  color: #999;
+}
+#hotList li:nth-child(1) .rank,
+#hotList li:nth-child(2) .rank,
+#hotList li:nth-child(3) .rank {
+  color: #df3436;
 }
 /* search */
 .page-3 {

@@ -27,6 +27,7 @@
         },
         render(data) {
             let { songs } = data;
+            console.log(data)
             songs.map((song) => {
                 let $li = $(this.template
                     .replace('{{song.name}}', song.name)
@@ -59,9 +60,13 @@
             this.model = model;
             this.model.find().then(() => {
                 this.view.removeLoading()
+                this.bindEventHub()
                 this.view.render(this.model.data)
             });
         },
+        bindEventHub(){
+            window.eventHub.emit('songlist', this.model.data.songs) //把数据传给热歌榜模块
+        }
     };
     controller.init(view, model);
 }

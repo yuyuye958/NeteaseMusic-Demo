@@ -69,8 +69,7 @@ body {
 	background: @red;
 	padding: 17px 10px;
 	.logo > svg {
-		width: 142px;
-		height: 25px;
+		height: 6.5vw;
 		vertical-align: top;
 	}
 	a {
@@ -170,7 +169,8 @@ body {
 	}
 }
 
-.newSongs .list,.search-result .list {
+/* latestMusic */
+.list { //歌曲公共样式
 	margin-top: 18px;
 	li {
 		position: relative;
@@ -234,6 +234,52 @@ body {
 		font-size: 12px;
 		color: @grey;
 		transform: scale(.75);
+	}
+}
+
+/* hotList */
+.hot-board{
+	background: url(//s3.music.126.net/m/s/img/hot_music_bg_2x.jpg?f01a252389c26bcf016816242eaa6aee) no-repeat;
+	position: relative;
+	height: 40vw;
+	padding-left: 5.8vw;
+    padding-top: 6.9vw;
+    overflow: hidden;
+	background-size: contain;
+	.hot-music-logo{
+		background-image: url(//s3.music.126.net/m/s/img/index_icon_3x.png?49a82fee3e0fc602e9c8b25df2bda159);
+		width: 142px;
+		height: 67px;
+		background-position: -24px -30px;
+		background-size: 166px 97px;
+	}
+	.hot-music-date{
+		margin-top: 10px;
+		color: hsla(0,0%,100%,.8);
+		font-size: 12px;
+		-webkit-transform: scale(.91);
+		transform: scale(.91);
+		-webkit-transform-origin: left top;
+		transform-origin: left top;
+	}
+}
+#hotList{
+	margin-top: 0;
+	li{
+		margin: 0;
+		padding-left: 9vw;
+		.rank{
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 2vw;
+			color: #999;
+		}
+		&:nth-child(1),&:nth-child(2),&:nth-child(3){
+			.rank{
+				color:#df3436;
+			}
+		}
 	}
 }
 

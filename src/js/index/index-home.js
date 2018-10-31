@@ -34,12 +34,12 @@
         },
         loadModule1(){
             let script1 = document.createElement('script')
-            script1.src = './js/index/page-1-1.js'
+            script1.src = './js/index/index-home-playlists.js'
             document.body.appendChild(script1)
         },
         loadModule2(){
             let script2 = document.createElement('script')
-            script2.src = './js/index/page-1-2.js'
+            script2.src = './js/index/index-home-latestMusic.js'
             document.body.appendChild(script2)
         }
     }
