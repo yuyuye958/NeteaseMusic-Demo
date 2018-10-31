@@ -241,9 +241,9 @@ body {
   background-size: 166px 97px;
 }
 .hot-board .hot-music-date {
-  margin-top: 10px;
+  margin-top: 3vw;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 12px;
+  font-size: 3.3vw;
   -webkit-transform: scale(0.91);
   transform: scale(0.91);
   -webkit-transform-origin: left top;
